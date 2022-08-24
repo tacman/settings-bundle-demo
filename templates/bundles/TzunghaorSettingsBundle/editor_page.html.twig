@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% use "@TzunghaorSettings/editor_blocks.html.twig" %}
+
+{% block stylesheets %}
+    {{ block('ts_stylesheets') }}
+{% endblock %}
+
+{% block body %}
+{{ block('ts_body') }}
+{% endblock %}
+
+{% block javascripts %}
+{{ block('ts_javascripts') }}
+{% endblock %}

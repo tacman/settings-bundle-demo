@@ -8,7 +8,9 @@ class SiteSettings
     #[Setting]
     public string $version = "1.0.0";
 
-    #[Setting]
+    #[Setting('Tagline', help: "The company slogan")]
+    public ?string $tagline = null;
+
     public string $title = "(title)";
 
     #[Setting]

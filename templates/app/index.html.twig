@@ -4,9 +4,38 @@
 
 {% block body %}
 
-<h1>Site Settings</h1>
+    <h1>Settings Demo</h1>
 
-    {{ component('item_grid', {data: siteSettings}) }}
+    <div class="row">
+        {% for class, settings in classSettings %}
 
-    <button><a href="{{ path('settings_edit') }}">EDIT SETTINGS</a> </button>
+            <div class="col-md-4">
+                <div class="card">
+
+            <h3 class="card-title">{{ class }}</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Var</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for var,val in settings %}
+                    <tr>
+                        <td>{{ var }}</td>
+                        <td>{{ val is iterable ? val|json_encode : val }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            {#        {{ component('item_grid', {data: settings}) }} #}
+            <button><a href="{{ path('settings_edit', {scope: 'default', section: class}) }}">Edit {{ class }}</a></button>
+            </div>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
 {% endblock %}
