@@ -1,0 +1,15 @@
+{
+    "controllers": {
+        "@survos/grid-bundle": {
+            "grid": {
+                "enabled": true,
+                "fetch": "lazy",
+                "autoimport": {
+                    "datatables.net-bs5/css/dataTables.bootstrap5.min.css": true,
+                    "datatables.net-searchbuilder-bs5/css/searchBuilder.bootstrap5.min.css": true
+                }
+            }
+        }
+    },
+    "entrypoints": []
+}

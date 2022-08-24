@@ -1,0 +1,19 @@
+# config/routes/tzunghaor_settings.yaml
+
+settings_scope_search:
+  path: '/settings/scope-search'
+  controller: 'tzunghaor_settings.editor_controller::searchScope'
+
+settings_edit:
+  path: '/settings/edit/{scope?}/{section?}'
+  controller: 'tzunghaor_settings.editor_controller::edit'
+  defaults:
+    collection: 'default'
+    fixedParameters: ['collection']
+    searchRoute: 'settings_scope_search'
+
+#tzunghaor_settings_editor:
+#  resource: '@TzunghaorSettingsBundle/Resources/config/routes.xml'
+#  prefix: '/settings'
+
+

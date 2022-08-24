@@ -1,0 +1,12 @@
+# config/packages/tzunghaor_settings.yaml
+tzunghaor_settings:
+  collections:
+    # Each entry under "tzunghaor_settings" configures a setting collection.
+    # Use "default" if you define only one collection
+    default:
+      mappings:
+        # I used "default" as mapping name, but it is up to you.
+        # You can have multiple mappings
+        default:
+          dir: '%kernel.project_dir%/src/Settings'
+          prefix: App\Settings\

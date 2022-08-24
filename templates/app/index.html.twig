@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Settings Bundle Demo{% endblock %}
+
+{% block body %}
+
+<h1>Site Settings</h1>
+
+    {{ component('item_grid', {data: siteSettings}) }}
+
+    <button><a href="{{ path('settings_edit') }}">EDIT SETTINGS</a> </button>
+{% endblock %}
