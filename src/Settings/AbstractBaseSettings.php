@@ -2,18 +2,14 @@
 
 namespace App\Settings;
 
-use Tzunghaor\SettingsBundle\Annotation\Setting;
+use Tzunghaor\SettingsBundle\Attribute\Setting;
 
 abstract class AbstractBaseSettings
 {
-    /**
-     * @Setting(label="assets name label")
-     */
-    public $name = 'baba';
+    #[Setting(label: 'Public Name')]
+    public string $name = 'baba';
 
-    /**
-     * @Setting(label="private address label")
-     */
+    #[Setting('Private address')]
     private $address = 'yaga';
 
     /**
@@ -21,14 +17,15 @@ abstract class AbstractBaseSettings
      *
      * This is the minimum description
      */
+    #[Setting(label: 'Minimum number of something', help: 'description or help?')]
     protected $minimum = 10;
 
     /**
      * The maximum
      *
      * This is the maximum description
-     * @Setting(formOptions={"attr": {"class": "max"}})
      */
+    #[Setting("Abstract Max", formOptions: ['attr'=> ['class'=> 'max']])]
     protected $maximum = 20;
 
     /**

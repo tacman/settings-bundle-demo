@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "112ecc47cfc4411c65cb5f5fad0554f2",
+    "content-hash": "cd0f03f061b9fee4af6d82970dbd406f",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2287,11 +2287,17 @@
         },
         {
             "name": "survos/grid-bundle",
-            "version": "dev-main",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/survos/SurvosGridBundle.git",
+                "reference": "986e22a92ee52edd72e686f6c6217fe4fec812cf"
+            },
             "dist": {
-                "type": "path",
-                "url": "//home/tac/survos/bundles/grid-bundle",
-                "reference": "80a5ece957ad46094717eac16922bdfac44edd62"
+                "type": "zip",
+                "url": "https://api.github.com/repos/survos/SurvosGridBundle/zipball/986e22a92ee52edd72e686f6c6217fe4fec812cf",
+                "reference": "986e22a92ee52edd72e686f6c6217fe4fec812cf",
+                "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "^2.7",
@@ -2334,11 +2340,7 @@
                     "Survos\\Grid\\": "src/"
                 }
             },
-            "scripts": {
-                "phpstan": [
-                    "vendor/bin/phpstan analyse"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2353,9 +2355,11 @@
                 "symfony-ux",
                 "symfony6"
             ],
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "issues": "https://github.com/survos/SurvosGridBundle/issues",
+                "source": "https://github.com/survos/SurvosGridBundle/tree/1.0.5"
+            },
+            "time": "2022-08-24T15:50:36+00:00"
         },
         {
             "name": "symfony/asset",
@@ -7659,10 +7663,16 @@
         {
             "name": "tzunghaor/settings-bundle",
             "version": "dev-tac",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tacman/settings-bundle.git",
+                "reference": "c8a177e5568db08279591a833ac738cd03f05695"
+            },
             "dist": {
-                "type": "path",
-                "url": "//home/tac/survos/bundles/settings-bundle",
-                "reference": "fc2d4cd68b77fbc5a0bf7bd4c0dd8d76fdee5ce9"
+                "type": "zip",
+                "url": "https://api.github.com/repos/tacman/settings-bundle/zipball/c8a177e5568db08279591a833ac738cd03f05695",
+                "reference": "c8a177e5568db08279591a833ac738cd03f05695",
+                "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "^2.0",
@@ -7711,9 +7721,10 @@
                 }
             ],
             "description": "Database persisted settings",
-            "transport-options": {
-                "relative": false
-            }
+            "support": {
+                "source": "https://github.com/tacman/settings-bundle/tree/tac"
+            },
+            "time": "2022-08-24T16:29:32+00:00"
         },
         {
             "name": "webmozart/assert",

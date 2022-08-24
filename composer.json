@@ -44,7 +44,7 @@
         "symfony/yaml": "6.1.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
-        "tzunghaor/settings-bundle": "*@dev"
+        "tzunghaor/settings-bundle": "dev-tac"
     },
     "config": {
         "allow-plugins": {
@@ -109,13 +109,9 @@
         "symfony/web-profiler-bundle": "6.1.*"
     },
     "repositories": {
-        "grid": {
-            "type": "path",
-            "url": "//home/tac/survos/bundles/grid-bundle"
-        },
         "settings": {
-            "type": "path",
-            "url": "//home/tac/survos/bundles/settings-bundle"
+            "type": "vcs",
+            "url": "git@github.com:tacman/settings-bundle"
         }
     }
 }
