@@ -7,32 +7,34 @@
     <h1>Settings Demo</h1>
 
     <div class="row">
-        {% for class, settings in classSettings %}
+        {% for collection, classSettings in collectionSettings %}
+            {% for class, settings in classSettings %}
 
-            <div class="col-md-4">
-                <div class="card">
+                <div class="col-md-4">
+                    <div class="card">
 
-            <h3 class="card-title">{{ class }}</h3>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Var</th>
-                    <th>Value</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for var,val in settings %}
+                <h3 class="card-title">{{ class }}</h3>
+                <table class="table">
+                    <thead>
                     <tr>
-                        <td>{{ var }}</td>
-                        <td>{{ val is iterable ? val|json_encode : val }}</td>
+                        <th>Var</th>
+                        <th>Value</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-            {#        {{ component('item_grid', {data: settings}) }} #}
-            <button><a href="{{ path('settings_edit', {scope: 'default', section: class}) }}">Edit {{ class }}</a></button>
-            </div>
-            </div>
+                    </thead>
+                    <tbody>
+                    {% for var,val in settings %}
+                        <tr>
+                            <td>{{ var }}</td>
+                            <td>{{ val is iterable ? val|json_encode : val }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <button><a href="{{ path(collection ~ '_settings_edit', {section: class}) }}">Edit {{ class }}</a></button>
+                </div>
+                </div>
+            {% endfor %}
         {% endfor %}
 
     </div>

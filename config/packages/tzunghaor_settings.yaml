@@ -3,10 +3,21 @@ tzunghaor_settings:
   collections:
     # Each entry under "tzunghaor_settings" configures a setting collection.
     # Use "default" if you define only one collection
-    default:
+
+    # This example collection is not scoped, the same setting applies for the entire application
+    system:
       mappings:
         # I used "default" as mapping name, but it is up to you.
         # You can have multiple mappings
         default:
-          dir: '%kernel.project_dir%/src/Settings'
-          prefix: App\Settings\
+          dir: '%kernel.project_dir%/src/Settings/System'
+          prefix: App\Settings\System\
+
+    # In this collection every user has their own scope
+    user:
+      scope_provider: App\Service\UserScopeProvider
+      mappings:
+        default:
+          dir: '%kernel.project_dir%/src/Settings/User'
+          prefix: App\Settings\User\
+
