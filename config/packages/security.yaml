@@ -1,10 +1,15 @@
 security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
-        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'plaintext'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        users_in_memory:
+            memory:
+                users:
+                    alice: { password: 'alice', roles: [ROLE_USER, ROLE_ADMIN] }
+                    bob: { password: 'bob', roles: [ROLE_USER] }
+                    carlos: { password: 'carlos', roles: [ROLE_USER] }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -12,7 +17,11 @@ security:
         main:
             lazy: true
             provider: users_in_memory
-
+            form_login:
+                login_path: app_login
+                check_path: app_login
+            logout:
+                path: app_logout
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 

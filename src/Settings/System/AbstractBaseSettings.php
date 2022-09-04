@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Settings;
+namespace App\Settings\System;
 
 use Tzunghaor\SettingsBundle\Attribute\Setting;
 

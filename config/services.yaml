@@ -4,6 +4,12 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    projects:
+        1: { name: 'First project of Alice', owner: 'alice' }
+        12: { name: 'Bobo', owner: 'bob' }
+        13: { name: 'After hours with Bob', owner: 'bob' }
+        21: { name: 'Alice in Wonderland', owner: 'alice' }
+        98: { name: 'Secret Alice project', owner: 'alice' }
 
 services:
     # default configuration for services in *this* file
@@ -19,6 +25,10 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    App\Service\ProjectScopeProvider:
+        arguments:
+            $projects: '%projects%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

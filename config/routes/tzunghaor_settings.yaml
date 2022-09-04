@@ -4,13 +4,34 @@ settings_scope_search:
   path: '/settings/scope-search'
   controller: 'tzunghaor_settings.editor_controller::searchScope'
 
-settings_edit:
-  path: '/settings/edit/{scope?}/{section?}'
+# system settings has no scopes configured, so it has only 'default' scope
+system_settings_edit:
+  path: '/settings/edit/system/{section?}'
   controller: 'tzunghaor_settings.editor_controller::edit'
   defaults:
-    collection: 'default'
-    fixedParameters: ['collection']
+    collection: 'system'
+    scope: 'default'
+    fixedParameters: ['collection', 'scope']
     searchRoute: 'settings_scope_search'
+
+# user settings always uses logged-in user as scope, no need for scope in path
+user_settings_edit:
+  path: '/settings/edit/user/{section?}'
+  controller: 'tzunghaor_settings.editor_controller::edit'
+  defaults:
+    collection: 'user'
+    scope: ~ # null means use default scope
+    fixedParameters: ['collection', 'scope']
+    searchRoute: ~ # no scope search
+
+project_settings_edit:
+  path: '/settings/edit/project/{section?}/{scope?}'
+  controller: 'tzunghaor_settings.editor_controller::edit'
+  defaults:
+    collection: 'project'
+    fixedParameters: ['collection']
+    searchRoute: ~ # no scope search
+
 
 #tzunghaor_settings_editor:
 #  resource: '@TzunghaorSettingsBundle/Resources/config/routes.xml'

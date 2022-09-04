@@ -19,6 +19,12 @@
     </head>
     <body>
         <a class="btn btn-primary" href="{{ path('app_homepage') }}">HOME</a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a class="btn btn-secondary" href="{{ path('app_logout') }}">LOGOUT {{ app.user.userIdentifier }}</a>
+        {% else %}
+            <a class="btn btn-secondary" href="{{ path('app_login') }}">LOGIN</a>
+        {% endif %}
+
         {% block body %}{% endblock %}
     </body>
 </html>

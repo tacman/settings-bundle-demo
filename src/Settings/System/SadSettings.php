@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Settings;
+namespace App\Settings\System;
+
+use App\Settings\Section;
 
 #[Section]
 class SadSettings extends AbstractBaseSettings
