@@ -7,7 +7,7 @@ security:
         users_in_memory:
             memory:
                 users:
-                    alice: { password: 'alice', roles: [ROLE_USER] }
+                    alice: { password: 'alice', roles: [ROLE_USER, ROLE_ADMIN] }
                     bob: { password: 'bob', roles: [ROLE_USER] }
                     carlos: { password: 'carlos', roles: [ROLE_USER] }
     firewalls:

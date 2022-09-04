@@ -1,8 +1,15 @@
 # config/packages/tzunghaor_settings.yaml
 tzunghaor_settings:
+  security: true
   collections:
     # Each entry under "tzunghaor_settings" configures a setting collection.
     # Use "default" if you define only one collection
+
+    # In the collections where you don't specify custom "entity", the bundle default will be used
+    # Using the same entity in multiple collections can cause name clash where
+    # (scope, section class name, attribute name) combination is the same,
+    # e.g. if we had App\Settings\System\MiscSettings::$foo and App\Settings\User\MiscSettings::$foo
+    # and a user whose identifier is "default"
 
     # This example collection is not scoped, the same setting applies for the entire application
     system:
@@ -21,3 +28,11 @@ tzunghaor_settings:
           dir: '%kernel.project_dir%/src/Settings/User'
           prefix: App\Settings\User\
 
+    # In this collection every user has their own scope for default project settings,
+    # and every project has a scope to optionally override the user defaults
+    project:
+      scope_provider: App\Service\ProjectScopeProvider
+      mappings:
+        default:
+          dir: '%kernel.project_dir%/src/Settings/Project'
+          prefix: App\Settings\Project\

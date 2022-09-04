@@ -24,6 +24,15 @@ user_settings_edit:
     fixedParameters: ['collection', 'scope']
     searchRoute: ~ # no scope search
 
+project_settings_edit:
+  path: '/settings/edit/project/{section?}/{scope?}'
+  controller: 'tzunghaor_settings.editor_controller::edit'
+  defaults:
+    collection: 'project'
+    fixedParameters: ['collection']
+    searchRoute: ~ # no scope search
+
+
 #tzunghaor_settings_editor:
 #  resource: '@TzunghaorSettingsBundle/Resources/config/routes.xml'
 #  prefix: '/settings'

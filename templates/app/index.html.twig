@@ -7,13 +7,34 @@
     <h1>Settings Demo</h1>
 
     <div class="row">
+        <div class="col-sm-12">
+        {% for project in projects %}
+            [[
+            {% if currentProject is not null and project.id == currentProject.id %}
+               ---
+            {% else %}
+                 <a href="{{ path('app_homepage', { project: project.id }) }}">
+            {% endif %}
+
+            {{ project.name }} ({{ project.owner }})
+
+             {% if currentProject is not null and project.id == currentProject.id %}
+                 ---
+             {% else %}
+                 </a>
+             {% endif %}
+             ]]
+        {% endfor %}
+        </div>
+    </div>
+    <div class="row">
         {% for collection, classSettings in collectionSettings %}
-            {% for class, settings in classSettings %}
+            {% for settingsDef in classSettings %}
 
                 <div class="col-md-4">
                     <div class="card">
 
-                <h3 class="card-title">{{ class }}</h3>
+                <h3 class="card-title">{{ settingsDef.class }}</h3>
                 <table class="table">
                     <thead>
                     <tr>
@@ -22,7 +43,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for var,val in settings %}
+                    {% for var,val in settingsDef.settings %}
                         <tr>
                             <td>{{ var }}</td>
                             <td>{{ val is iterable ? val|json_encode : val }}</td>
@@ -31,7 +52,11 @@
                     </tbody>
                 </table>
 
-                <button><a href="{{ path(collection ~ '_settings_edit', {section: class}) }}">Edit {{ class }}</a></button>
+                <button>
+                    <a href="{{ path(settingsDef.route, settingsDef.routeParams) }}">
+                            Edit {{ settingsDef.class }}
+                    </a>
+                </button>
                 </div>
                 </div>
             {% endfor %}

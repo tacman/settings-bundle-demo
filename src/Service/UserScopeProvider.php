@@ -23,7 +23,7 @@ class UserScopeProvider implements ScopeProviderInterface
             // You don't have to handle this case if you always specify the scope in editor route and your calls:
             // $settingsService->getSection(MySettings::class, 'myScope');
             $user = $this->security->getUser();
-            $scope = $user === null ? '' : $user->getUserIdentifier();
+            $scope = $user->getUserIdentifier();
         } elseif (is_string($subject)) {
             // If $subject is string, we assume it is a user identifier - we could check here if user really exists.
             // This branch has to be implemented if you want to support scopes in editor route, or support calls like:
@@ -34,7 +34,7 @@ class UserScopeProvider implements ScopeProviderInterface
             // $settingsService->getSection(MySettings::class, $myObject);
             $scope = $subject->getUserIdentifier();
         } else {
-            throw new \InvalidArgumentException(get_class($subject) . ' is not supported as subject');
+            throw new \DomainException(get_class($subject) . ' is not supported as subject');
         }
 
         return new Item($scope);
