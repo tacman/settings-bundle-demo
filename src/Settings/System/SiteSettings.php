@@ -8,8 +8,11 @@ class SiteSettings
     #[Setting]
     public string $version = "1.0.0";
 
-    #[Setting('Tagline', help: "The company slogan")]
+    #[Setting('Tagline', help: "A site for Joksters")]
     public ?string $tagline = null;
+
+    #[Setting('Branch', help: "Repository Branch")]
+    public ?string $branch = null;
 
     public string $title = "(title)";
 

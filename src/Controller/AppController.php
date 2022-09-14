@@ -25,6 +25,7 @@ class AppController extends AbstractController
     ) {
     }
 
+
     /**
      * Three collections are defined in tzunghaor_settings.yaml: "system", "user" and "project", these have separate services.
      * The bundle adds auto-wiring rules, so $systemSettings as argument name will receive "system" collection's service.
@@ -48,18 +49,21 @@ class AppController extends AbstractController
             'project' => [],
         ];
         // hack, not sure how to get all the setting classes.
-        foreach ([SiteSettings::class, BoxSettings::class, FunSettings::class, SadSettings::class] as $settingsClass) {
-            $obj = $systemSettings->getSection($settingsClass);
-            $class = (new \ReflectionClass($settingsClass))->getShortName();
-            $settings['system'][] = [
-                'class' => $class,
-                'settings' => json_decode($this->serializer->serialize($obj, 'json'), true),
-                'route' => 'system_settings_edit',
-                'routeParams' => ['section' => $class],
-            ];
-        }
+//        foreach ([SiteSettings::class, BoxSettings::class, FunSettings::class, SadSettings::class] as $settingsClass) {
 
-        // user and project settings makes sense only if there is a logged in user
+
+            foreach ([SiteSettings::class] as $settingsClass) {
+
+                $obj = $systemSettings->getSection($settingsClass);
+                $class = (new \ReflectionClass($settingsClass))->getShortName();
+                $settings['system'][] = [
+                    'class' => $class,
+                    'settings' => json_decode($this->serializer->serialize($obj, 'json'), true),
+                    'route' => 'system_settings_edit',
+                    'routeParams' => ['section' => $class],
+                ];
+            }
+            // user and project settings makes sense only if there is a logged in user
         if ($this->getUser() !== null) {
             foreach([UserSettings::class] as $settingsClass) {
                 $obj = $userSettings->getSection($settingsClass);
@@ -72,20 +76,23 @@ class AppController extends AbstractController
                 ];
             }
 
-            foreach([MainProjectSettings::class] as $settingsClass) {
-                $obj = $projectSettings->getSection($settingsClass, $currentProject);
-                $class = (new \ReflectionClass($settingsClass))->getShortName();
-                $settings['project'][] = [
-                    'class' => $class,
-                    'settings' => json_decode($this->serializer->serialize($obj, 'json'), true),
-                    'route' => 'project_settings_edit',
-                    'routeParams' => ['section' => $class, 'scope' => $this->projectProvider->getScope($currentProject)->getName()],
-                ];
+            if ($currentProject) {
+                foreach([MainProjectSettings::class] as $settingsClass) {
+                    $obj = $projectSettings->getSection($settingsClass, $currentProject);
+                    $class = (new \ReflectionClass($settingsClass))->getShortName();
+                    $settings['project'][] = [
+                        'class' => $class,
+                        'settings' => json_decode($this->serializer->serialize($obj, 'json'), true),
+                        'route' => 'project_settings_edit',
+                        'routeParams' => ['section' => $class, 'scope' => $this->projectProvider->getScope($currentProject)->getName()],
+                    ];
+                }
             }
         }
 
         return $this->render('app/index.html.twig', [
             'collectionSettings' => $settings,
+            'systemSettings' => $systemSettings->getSection(SiteSettings::class),
             'projects' => $this->projectProvider->getProjects(),
             'currentProject' => $currentProject,
         ]);

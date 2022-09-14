@@ -44,7 +44,7 @@
         "symfony/yaml": "6.1.*",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0",
-        "tzunghaor/settings-bundle": "dev-tac"
+        "tzunghaor/settings-bundle": "*@dev"
     },
     "config": {
         "allow-plugins": {
@@ -99,6 +99,7 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "6.1.*",
         "symfony/css-selector": "6.1.*",
@@ -109,9 +110,13 @@
         "symfony/web-profiler-bundle": "6.1.*"
     },
     "repositories": {
+        "bootstrap": {
+            "type": "path",
+            "url": "//home/tac/survos/bundles/bootstrap-bundle"
+        },
         "settings": {
-            "type": "vcs",
-            "url": "git@github.com:tacman/settings-bundle"
+            "type": "path",
+            "url": "//home/tac/survos/bundles/settings-bundle"
         }
     }
 }

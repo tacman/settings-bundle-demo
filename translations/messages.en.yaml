@@ -1,0 +1,3 @@
+SiteSettings: System-level (this site).
+UserSettings: Specific to the logged in user
+MainProjectSettings: Specific to this user AND project

@@ -2,18 +2,18 @@
 
 namespace App\Settings\Project;
 
+use Tzunghaor\SettingsBundle\Attribute\Setting;
+
 /**
  * Main Settings of Project
  */
 class MainProjectSettings
 {
-    /**
-     * Budget
-     *
-     * Given in dollars, we don't care about cents.
-     */
-    public int $budget = 0;
 
+    #[Setting(help: 'Receive updates from this project')]
+    public string $emailFrequency = 'weekly';
 
-    public ?\DateTime $deadline = null;
+    #[Setting(help: 'Add To Quick Links')]
+    public bool $isFavorite = false;
+
 }
