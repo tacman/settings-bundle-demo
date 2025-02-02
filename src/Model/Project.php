@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class Project
+class Project implements \Stringable
 {
     private int $id;
 
@@ -30,5 +30,10 @@ class Project
     public function getOwner(): string
     {
         return $this->owner;
+    }
+
+    public function __toString(): string
+    {
+        return sprintf('%s (%s)', $this->getName(), $this->getOwner());
     }
 }

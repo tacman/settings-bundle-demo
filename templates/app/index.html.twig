@@ -4,64 +4,45 @@
 
 {% block body %}
 
-    <h1>{{ systemSettings.tagline }}
-        <span class="badge info">{{ systemSettings.version }}</span>
+    <h1>
+        {{ systemSettings.title }}
     </h1>
+    <h2>
+        {{ systemSettings.tagline }}
+        <span class="badge info">{{ systemSettings.version }}</span>
 
-    Nav: <a href="{{ path('app_project') }}">Projects</a>
-{#        {{ dump(collectionSettings) }}#}
+    </h2>
+        {% set roleMap = {
+            system: 'ROLE_ADMIN',
+            user: 'ROLE_USER',
+            project: 'PROJECT_ADMIN'
+        } %}
     <div class="row">
         {% for collection, classSettings in collectionSettings %}
-            {% for settingsDef in classSettings %}
+            <twig:Settings :settings="classSettings" :isAdmin="is_granted(roleMap[collection])">
 
-                <div class="col-md-4">
-                    <div class="card">
-
-                        <h3 class="card-title">{{ settingsDef.class }}</h3>
-                        <div>
-                            {{ settingsDef.class|trans }}
-                        </div>
-
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Var</th>
-                                <th>Value</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for var,val in settingsDef.settings %}
-                                <tr>
-                                    <td>
-
-                                        {% if val|fn_gettype == 'boolean' %}
-                                        {% set tag = val ? 'ins' : 'del' %}
-                                        <{{ tag }}>{{ var }}</{{ tag }}>
-                                    {% else %}
-                                        {{ var }}
-                                        {% endif %}
-{#                                        {{ val|fn_gettype }}#}
-                                    </td>
-                                    <td>
-                                        {{ val is iterable ? val|json_encode : val }}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                        {% if is_granted('ROLE_USER') %}
-                            <button>
-                                <a href="{{ path(settingsDef.route, settingsDef.routeParams) }}">
-                                    Edit {{ settingsDef.class }}
-                                </a>
-                            </button>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
+            </twig:Settings>
         {% endfor %}
     </div>
 
+    <div>
+        {% set columns = [
+            'id',
+            'name',
+            'owner'
+        ] %}
+        <twig:simple_datatables :data="projects" :columns="columns">
+            <twig:block name="name">
+                <a href="{{ path('app_project', { projectId: row.id }) }}">
+                    {#            <a href="{{ path('project_show', {id:row.id}) }}">#}
+                    {{ row.name }}
+                </a>
+
+            </twig:block>
+
+        </twig:simple_datatables>
+
+    </div>
 
 
 {% endblock %}

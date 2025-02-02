@@ -1,12 +1,15 @@
 {
-    "doctrine/annotations": {
-        "version": "1.13",
+    "bizkit/versioning-bundle": {
+        "version": "1.2",
         "recipe": {
-            "repo": "github.com/symfony/recipes",
+            "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
-            "version": "1.10",
-            "ref": "64d8583af5ea57b7afa4aba4b159907f3a148b05"
-        }
+            "version": "1.0",
+            "ref": "ecb844d4e78c7e1834fb360fbb4d3846da02e581"
+        },
+        "files": [
+            "config/packages/bizkit_versioning.yaml"
+        ]
     },
     "doctrine/doctrine-bundle": {
         "version": "2.7",
@@ -75,6 +78,9 @@
     },
     "survos/core-bundle": {
         "version": "1.0.7"
+    },
+    "survos/deployment-bundle": {
+        "version": "1.5.499"
     },
     "survos/grid-bundle": {
         "version": "1.0.4"

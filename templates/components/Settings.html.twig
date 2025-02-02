@@ -1,0 +1,51 @@
+<div{{ attributes }}>
+    <!-- component html -->
+
+    {% for settingsDef in settings %}
+
+            <div class="card">
+
+                <h3 class="card-title">{{ settingsDef.class }}</h3>
+                <div>
+                    {{ settingsDef.class|trans }}
+                </div>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Var</th>
+                        <th>Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for var,val in settingsDef.settings %}
+                        <tr>
+                            <td>
+
+                                {% if val|fn_gettype == 'boolean' %}
+                                {% set tag = val ? 'ins' : 'del' %}
+                                <{{ tag }}>{{ var }}</{{ tag }}>
+                            {% else %}
+                                {{ var }}
+                            {% endif %}
+                            {#                                        {{ val|fn_gettype }}#}
+                            </td>
+                            <td>
+                                {{ val is iterable ? val|json_encode : val }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                {% if isAdmin %}
+                    <button>
+                        <a href="{{ path(settingsDef.route, settingsDef.routeParams) }}">
+                            Edit {{ settingsDef.class }}
+                        </a>
+                    </button>
+                {% endif %}
+            </div>
+    {% endfor %}
+
+</div>

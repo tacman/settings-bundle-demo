@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ project }}{% endblock %}
+
+{% block body %}
+    <h1>{{ project }}</h1>
+
+    <twig:Settings :settings="settings" :isAdmin="is_granted('edit', project)">
+
+    </twig:Settings>
+
+{% endblock %}

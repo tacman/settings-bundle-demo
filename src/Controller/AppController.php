@@ -9,6 +9,7 @@ use App\Settings\System\FunSettings;
 use App\Settings\System\SadSettings;
 use App\Settings\System\SiteSettings;
 use App\Settings\User\UserSettings;
+use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +27,7 @@ class AppController extends AbstractController
     }
 
 
-    /**
+        /**
      * Three collections are defined in tzunghaor_settings.yaml: "system", "user" and "project", these have separate services.
      * The bundle adds auto-wiring rules, so $systemSettings as argument name will receive "system" collection's service.
      */
@@ -37,11 +38,6 @@ class AppController extends AbstractController
         SettingsService $projectSettings,
         Request         $request
     ): Response {
-        if ($request->query->has('project')) {
-            $currentProject = $this->projectProvider->findProject((int) $request->query->get('project'));
-        } else {
-            $currentProject = null;
-        }
 
         $settings = [
             'system' => [],
@@ -75,25 +71,12 @@ class AppController extends AbstractController
                 ];
             }
 
-            if ($currentProject) {
-                foreach([MainProjectSettings::class] as $settingsClass) {
-                    $obj = $projectSettings->getSection($settingsClass, $currentProject);
-                    $class = (new \ReflectionClass($settingsClass))->getShortName();
-                    $settings['project'][] = [
-                        'class' => $class,
-                        'settings' => json_decode($this->serializer->serialize($obj, 'json'), true),
-                        'route' => 'project_settings_edit',
-                        'routeParams' => ['section' => $class, 'scope' => $this->projectProvider->getScope($currentProject)->getName()],
-                    ];
-                }
-            }
         }
 
         return $this->render('app/index.html.twig', [
             'collectionSettings' => $settings,
             'systemSettings' => $systemSettings->getSection(SiteSettings::class),
             'projects' => $this->projectProvider->getProjects(),
-            'currentProject' => $currentProject,
         ]);
     }
 

@@ -13,21 +13,16 @@ Users can view these projects and configure their experience, like wanting the p
 
 Site administrators (ROLE_ADMIN) can configure the site title, version, and welcome message.
 
-One approach is to add the settings to the individual record.  That is, the project record could have a title and tagline, the UserSubscriber record could ahve the "add to favorites" tag, etc.  But this creates a lot of horizontal fields.  Settings bundle adds the overridden properties to a table without cluttering up the entity record.
+One approach is to add the settings to the individual record.  That is, the project record could have a title and tagline, the UserSubscriber record could have the "add to favorites" tag, etc.  But this creates a lot of horizontal fields.  Settings bundle adds the overridden properties to a table without cluttering up the entity record.
 
 ```bash
 git clone git@github.com:tacman/settings-bundle-demo
 cd settings-bundle-demo
 composer install
 bin/console doctrine:schema:update --force
-npm install
-npm run build
+wget https://raw.githubusercontent.com/taivop/joke-dataset/refs/heads/master/stupidstuff.json
 symfony server:start
 ```
 
 Go to /settings/edit
 
-For Symfony 6, use:
-
-composer config repositories.settings '{"type": "vcs", "url": "git@github.com:tacman/settings-bundle"}'
-composer req tzunghaor/settings-bundle:dev-tac

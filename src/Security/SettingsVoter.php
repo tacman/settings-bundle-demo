@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Model\Project;
 use App\Service\ProjectScopeProvider;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
@@ -15,7 +16,8 @@ class SettingsVoter extends Voter
     protected function supports(string $attribute, mixed $subject): bool
     {
         // This is what a settings voter must support
-        return $attribute === 'edit' && $subject instanceof SettingSectionAddress;
+        return $attribute === 'edit' &&
+            ($subject instanceof SettingSectionAddress);
     }
 
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
