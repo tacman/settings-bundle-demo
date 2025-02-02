@@ -9,7 +9,7 @@
     </h1>
 
     Nav: <a href="{{ path('app_project') }}">Projects</a>
-        {{ dump(collectionSettings) }}
+{#        {{ dump(collectionSettings) }}#}
     <div class="row">
         {% for collection, classSettings in collectionSettings %}
             {% for settingsDef in classSettings %}
@@ -32,14 +32,24 @@
                             <tbody>
                             {% for var,val in settingsDef.settings %}
                                 <tr>
-                                    <td>{{ var }}</td>
-                                    <td>{{ val is iterable ? val|json_encode : val }}</td>
+                                    <td>
+
+                                        {% if val|fn_gettype == 'boolean' %}
+                                        {% set tag = val ? 'ins' : 'del' %}
+                                        <{{ tag }}>{{ var }}</{{ tag }}>
+                                    {% else %}
+                                        {{ var }}
+                                        {% endif %}
+{#                                        {{ val|fn_gettype }}#}
+                                    </td>
+                                    <td>
+                                        {{ val is iterable ? val|json_encode : val }}
+                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
                         {% if is_granted('ROLE_USER') %}
-                            {{ dump(settingsDef) }}
                             <button>
                                 <a href="{{ path(settingsDef.route, settingsDef.routeParams) }}">
                                     Edit {{ settingsDef.class }}

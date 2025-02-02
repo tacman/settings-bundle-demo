@@ -15,6 +15,6 @@ class UserSettings
     #[Setting(help: 'Set Vacation Mode')]
     public bool $onVacation = false;
 
-    #[Setting(help: 'Return from Vacation, auto-restart after this date')]
+    #[Setting(help: 'Return from Vacation, auto-restart after this date', formOptions: ['required' => false])]
     public ?\DateTime $vacationReturn = null;
 }

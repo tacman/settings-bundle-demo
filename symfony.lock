@@ -79,6 +79,9 @@
     "survos/grid-bundle": {
         "version": "1.0.4"
     },
+    "survos/simple-datatables-bundle": {
+        "version": "1.5.499"
+    },
     "symfony/console": {
         "version": "6.1",
         "recipe": {
@@ -113,6 +116,18 @@
         },
         "files": [
             ".env"
+        ]
+    },
+    "symfony/form": {
+        "version": "7.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "7.2",
+            "ref": "7d86a6723f4a623f59e2bf966b6aad2fc461d36b"
+        },
+        "files": [
+            "config/packages/csrf.yaml"
         ]
     },
     "symfony/framework-bundle": {
@@ -231,6 +246,21 @@
             "config/packages/security.yaml"
         ]
     },
+    "symfony/stimulus-bundle": {
+        "version": "2.22",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.20",
+            "ref": "3acc494b566816514a6873a89023a35440b6386d"
+        },
+        "files": [
+            "assets/bootstrap.js",
+            "assets/controllers.json",
+            "assets/controllers/csrf_protection_controller.js",
+            "assets/controllers/hello_controller.js"
+        ]
+    },
     "symfony/translation": {
         "version": "6.1",
         "recipe": {
@@ -321,5 +351,14 @@
     },
     "tzunghaor/settings-bundle": {
         "version": "dev-tac"
+    },
+    "zenstruck/twig-service-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.2",
+            "ref": "9d9a3fe38d928e035eb80587fd875e78294f39e2"
+        }
     }
 }

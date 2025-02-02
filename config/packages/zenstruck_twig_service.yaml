@@ -1,0 +1,13 @@
+zenstruck_twig_service:
+  functions:
+    - iterator_to_array # available as "fn_iterator_to_array()" in twig
+    - json_decode
+    - file_exists
+    - is_array
+    - array_is_list
+    - is_object
+    - gettype
+
+#    - [service.id, serviceMethod] # available as "fn_serviceMethod()" in twig
+#    - [Some\Class, somePublicStaticMethod] # available as "fn_somePublicStaticMethod()" in twig
+

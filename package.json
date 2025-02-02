@@ -1,11 +1,12 @@
 {
     "devDependencies": {
         "@hotwired/stimulus": "^3.1.0",
-        "@survos/grid-bundle": "file:vendor/survos/grid-bundle/assets",
+        "@survos/simple-datatables-bundle": "file:vendor/survos/simple-datatables-bundle/assets",
         "@symfony/stimulus-bridge": "^3.2.0",
         "@symfony/webpack-encore": "^3.0.0",
         "core-js": "^3.23.0",
         "regenerator-runtime": "^0.13.9",
+        "simple-datatables": "^9.0.4",
         "webpack-notifier": "^1.15.0"
     },
     "license": "UNLICENSED",

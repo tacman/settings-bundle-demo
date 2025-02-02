@@ -3,7 +3,7 @@
 namespace App\Service;
 
 use App\Model\Project;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Tzunghaor\SettingsBundle\Model\Item;
 use Tzunghaor\SettingsBundle\Service\ScopeProviderInterface;
@@ -24,7 +24,9 @@ class ProjectScopeProvider implements ScopeProviderInterface
      */
     private array $projects;
 
-    public function __construct(private Security $security, array $projects)
+    public function __construct(
+        private Security $security,
+        array $projects)
     {
         $this->projects = [];
         foreach ($projects as $id => $values) {

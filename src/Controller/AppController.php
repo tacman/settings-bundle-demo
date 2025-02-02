@@ -53,7 +53,6 @@ class AppController extends AbstractController
 
 
             foreach ([SiteSettings::class] as $settingsClass) {
-
                 $obj = $systemSettings->getSection($settingsClass);
                 $class = (new \ReflectionClass($settingsClass))->getShortName();
                 $settings['system'][] = [
