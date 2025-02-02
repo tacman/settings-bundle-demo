@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "83521d950a552cf24ac25e7118e8953d",
+    "content-hash": "669e6e9da0b67f28d4741a415bcf9394",
     "packages": [
         {
             "name": "bizkit/versioning-bundle",
@@ -7699,10 +7699,16 @@
         {
             "name": "tzunghaor/settings-bundle",
             "version": "dev-tac2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tacman/settings-bundle.git",
+                "reference": "87d27d603437086831cbc5445f1f9ad0c87a32f9"
+            },
             "dist": {
-                "type": "path",
-                "url": "../settings-bundle",
-                "reference": "f0d68641c4779e00c5a1865e1e4487f4e2416d0d"
+                "type": "zip",
+                "url": "https://api.github.com/repos/tacman/settings-bundle/zipball/87d27d603437086831cbc5445f1f9ad0c87a32f9",
+                "reference": "87d27d603437086831cbc5445f1f9ad0c87a32f9",
+                "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "^2.4.3",
@@ -7734,6 +7740,7 @@
                 "symfony/asset": "^5.4 || ^6.0 || ^7.0",
                 "symfony/validator": "^5.4 || ^6.0 || ^7.0"
             },
+            "default-branch": true,
             "type": "symfony-bundle",
             "autoload": {
                 "psr-4": {
@@ -7761,9 +7768,10 @@
                 }
             ],
             "description": "Database persisted settings",
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "source": "https://github.com/tacman/settings-bundle/tree/tac2"
+            },
+            "time": "2025-02-02T23:47:56+00:00"
         },
         {
             "name": "webmozart/assert",

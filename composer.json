@@ -114,8 +114,8 @@
     },
     "repositories": {
         "tacman_tzunghaor": {
-            "type": "path",
-            "url": "../settings-bundle"
+            "type": "vcs",
+            "url": "git@github.com:tacman/settings-bundle.git"
         }
     }
 }
