@@ -12,36 +12,38 @@
         <span class="badge info">{{ systemSettings.version }}</span>
 
     </h2>
-        {% set roleMap = {
-            system: 'ROLE_ADMIN',
-            user: 'ROLE_USER',
-            project: 'PROJECT_ADMIN'
-        } %}
+    {% set roleMap = {
+        system: 'ROLE_ADMIN',
+        user: 'ROLE_USER',
+        project: 'PROJECT_ADMIN'
+    } %}
     <div class="row">
         {% for collection, classSettings in collectionSettings %}
-            <twig:Settings :settings="classSettings" :isAdmin="is_granted(roleMap[collection])">
+            <div class="col-md-4">
+                <twig:Settings :settings="classSettings" :isAdmin="is_granted(roleMap[collection])">
 
-            </twig:Settings>
+                </twig:Settings>
+
+            </div>
         {% endfor %}
-    </div>
+        <div class="col-md-4">
+            {% set columns = [
+                'id',
+                'name',
+                'owner'
+            ] %}
+            <twig:simple_datatables :data="projects" :columns="columns">
+                <twig:block name="name">
+                    <a href="{{ path('app_project', { projectId: row.id }) }}">
+                        {#            <a href="{{ path('project_show', {id:row.id}) }}"> #}
+                        {{ row.name }}
+                    </a>
 
-    <div>
-        {% set columns = [
-            'id',
-            'name',
-            'owner'
-        ] %}
-        <twig:simple_datatables :data="projects" :columns="columns">
-            <twig:block name="name">
-                <a href="{{ path('app_project', { projectId: row.id }) }}">
-                    {#            <a href="{{ path('project_show', {id:row.id}) }}">#}
-                    {{ row.name }}
-                </a>
+                </twig:block>
 
-            </twig:block>
+            </twig:simple_datatables>
 
-        </twig:simple_datatables>
-
+        </div>
     </div>
 
 
