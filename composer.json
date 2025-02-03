@@ -17,6 +17,7 @@
         "survos/deployment-bundle": "^1.5",
         "survos/simple-datatables-bundle": "^1.5",
         "symfony/asset": "^7.2",
+        "symfony/asset-mapper": "^7.2",
         "symfony/console": "^7.2",
         "symfony/doctrine-messenger": "^7.2",
         "symfony/dotenv": "^7.2",
@@ -83,7 +84,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "importmap:install": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
